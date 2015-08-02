@@ -40,23 +40,12 @@
             android:textSize="100sp"
             />
 
-        <!--
-        <ImageView
-                 android:id="@+id/imageView1"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_weight=".5"
-                 android:layout_gravity="center"
-                android:src="@drawable/plus" />
-
-         -->
         <TextView
             android:id="@+id/textviewplus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+"
-
-            android:layout_weight=".5"
+ android:layout_weight=".5"
             android:layout_gravity="center"
             android:textSize="80sp"
             />
@@ -104,8 +93,8 @@
 
     <!-- baraye 2 button e zir -->
     <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
+        android:id="@+id/linearLayoutbuttons"
+        android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"

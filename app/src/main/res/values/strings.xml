@@ -9,5 +9,7 @@
     <string name="title_activity_result">Result</string>
     <string name="title_activity_second">Second</string>
     <string name="title_activity_playsakht">playsakht</string>
+    <string name="emtiaz">امتیاز</string>
+    <string name="best_result">بیشترین امتیاز : </string>
 
 </resources>

@@ -14,11 +14,15 @@ public class Result extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         TextView tv = (TextView) findViewById(R.id.textView1);
+        TextView tv2 = (TextView) findViewById(R.id.textView4);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String Result = extras.getString("emtiaz");
             tv.setText(Result);
+
+            String Best_Result = extras.getString("best_emtiaz");
+            tv2.setText(Best_Result);
         }
 
 

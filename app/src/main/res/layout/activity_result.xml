@@ -25,11 +25,44 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="emtiaz"
+        android:text="@string/emtiaz"
         android:textSize="50sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear_bestresult"
+        android:layout_below="@+id/textView2"
+        android:paddingTop="20dp"
+        android:weightSum="1">
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_alignParentLeft="true"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal"
+            android:text="0"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="0.5"
+            android:text="@string/best_result"
+            android:textSize="30sp" />
+
+
+
+
+    </LinearLayout>
+
 
 
     <!-- baraye 3 buttone paeen -->

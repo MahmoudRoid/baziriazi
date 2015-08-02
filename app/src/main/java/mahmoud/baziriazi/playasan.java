@@ -1,29 +1,23 @@
 package mahmoud.baziriazi;
 
-import java.util.Random;
-import java.util.concurrent.Delayed;
-import java.util.concurrent.TimeUnit;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.os.Vibrator;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.WindowManager.LayoutParams;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.Random;
 
 public class playasan extends Activity {
     String[] backcolors=new String[]{"#00e0ff","#f07c05","#d6cf23"};
@@ -31,10 +25,8 @@ public class playasan extends Activity {
     TextView tvadad1;  // adade aval
     TextView tvadad2;	// adade 2vom
     TextView tvadad3;	// adade 3vom
-    TextView tvplus;	// +
-    TextView tvresult;	// result
     public Button btntrue;
-    public Button btnfalse;
+    //    public Button btnfalse;
     int adad;
     boolean bool;
     public int[] myrandomnumbers=new int[2];
@@ -43,19 +35,38 @@ public class playasan extends Activity {
     private ProgressBar customProgress;
     public int myProgress=0;
     public CountDownTimer mCountDownTimer;
-    public int counter=1; // baraye inke az dafeye dovom b bad progress bar kar konad
+    //    public int counter=1; // baraye inke az dafeye dovom b bad progress bar kar konad
     public int etmam=1; // baraye inke 2 bar methode payan() seda zade nashavad
+    public LinearLayout linearlayoutforbuttons;
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playasan);
-        RelativeLayout rl = (RelativeLayout)findViewById(R.id.relativelayout);
+
         tvadad1=(TextView) findViewById(R.id.textView1);
         tvadad2=(TextView) findViewById(R.id.textView2);
         tvadad3=(TextView) findViewById(R.id.textView3);
         btntrue = (Button) findViewById(R.id.buttontrue);
         customProgress =(ProgressBar)findViewById(R.id.customProgress);
+        RelativeLayout rl=(RelativeLayout)findViewById(R.id.relativelayout);
+        linearlayoutforbuttons = (LinearLayout)findViewById(R.id.linearLayoutbuttons);
+        pref=getApplicationContext().getSharedPreferences("MyPref_asan", MODE_PRIVATE);
+        editor=pref.edit();
+        editor.clear();
+
+     //    taeene andazeye ertefa e button ha
+
+//        DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
+//        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+//        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+//        int height=(int)((dpHeight*2)/5);
+//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams((int)dpWidth, height);
+//        linearlayoutforbuttons.setLayoutParams(lp);
+
 
         // baraye range backgroud
         int min = 0;
@@ -94,6 +105,12 @@ public class playasan extends Activity {
             if(result==myrandomnumbers[0]+myrandomnumbers[1]){
 
                 count++;
+                // moghayese behtarin result ba natijeye hale hazer
+                int saved_best_result=pref.getInt("best_result_asan",0);
+                if(count>=saved_best_result){
+                    editor.putInt("best_result_asan",count);
+                    editor.commit();
+                }
                 // continue
                 trueorfalse();
                 myprogressbar();
@@ -123,6 +140,11 @@ public class playasan extends Activity {
         finally{
             if(result!=myrandomnumbers[0]+myrandomnumbers[1]){
                 count++;
+                int saved_best_result=pref.getInt("best_result_asan",0);
+                if(count>=saved_best_result){
+                    editor.putInt("best_result_asan",count);
+                    editor.commit();
+                }
                 //continue
                 trueorfalse();
                 myprogressbar();
@@ -138,15 +160,22 @@ public class playasan extends Activity {
     }
 
     public void payan(){
+
         // namayesh emtiaz va az sar giri
         try{
+            int bestresult=pref.getInt("best_result_asan",0);
+            String bestresult_string=String.valueOf(bestresult);
+
             String emtiaz=String.valueOf(count);
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             vibrator.vibrate(500);
-            // mire b activitie result va natije ra ha mibarad
+            // mire b activitie result va natijeha ra ha mibarad
 
             Intent result_intent = new Intent(getApplicationContext(),Result.class);
-            result_intent.putExtra("emtiaz",emtiaz);
+            Bundle extras = new Bundle();
+            extras.putString("emtiaz",emtiaz);
+            extras.putString("best_emtiaz", bestresult_string);
+            result_intent.putExtras(extras);
             startActivity(result_intent);
             onDestroy();
         }
@@ -258,7 +287,6 @@ public class playasan extends Activity {
 
 
     }
-
 
 }
 

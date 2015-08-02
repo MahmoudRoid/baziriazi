@@ -3,6 +3,7 @@ package mahmoud.baziriazi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -38,6 +39,8 @@ public class playsakht extends Activity {
     public int counter=1; // baraye inke az dafeye dovom b bad progress bar kar konad
     public int etmam=1; // baraye inke 2 bar methode payan() seda zade nashavad
     public int hasel;
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,10 @@ public class playsakht extends Activity {
         textviewplusmines=(TextView) findViewById(R.id.textviewplusmines);
         btntrue = (Button) findViewById(R.id.buttontrue);
         customProgress =(ProgressBar)findViewById(R.id.customProgress);
+
+        pref=getApplicationContext().getSharedPreferences("MyPref_sakht", MODE_PRIVATE);
+        editor=pref.edit();
+        editor.clear();
 
         // baraye range backgroud
         int min = 0;
@@ -147,6 +154,12 @@ public class playsakht extends Activity {
                 if(result==myrandomnumbers[0]+myrandomnumbers[1]){
 
                     count++;
+                    // moghayese behtarin result ba natijeye hale hazer
+                    int saved_best_result=pref.getInt("best_result_sakht",0);
+                    if(count>=saved_best_result){
+                        editor.putInt("best_result_sakht",count);
+                        editor.commit();
+                    }
                     // continue
                     trueorfalse();
                     myprogressbar();
@@ -165,6 +178,12 @@ public class playsakht extends Activity {
                 if(result==myrandomnumbers[0]-myrandomnumbers[1]){
 
                     count++;
+                    // moghayese behtarin result ba natijeye hale hazer
+                    int saved_best_result=pref.getInt("best_result_sakht",0);
+                    if(count>=saved_best_result){
+                        editor.putInt("best_result_sakht",count);
+                        editor.commit();
+                    }
                     // continue
                     trueorfalse();
                     myprogressbar();
@@ -197,6 +216,12 @@ public class playsakht extends Activity {
             if(textviewplusmines.getText().toString()=="+"){
                 if(result!=myrandomnumbers[0]+myrandomnumbers[1]){
                     count++;
+                    // moghayese behtarin result ba natijeye hale hazer
+                    int saved_best_result=pref.getInt("best_result_sakht",0);
+                    if(count>=saved_best_result){
+                        editor.putInt("best_result_sakht",count);
+                        editor.commit();
+                    }
                     //continue
                     trueorfalse();
                     myprogressbar();
@@ -212,6 +237,12 @@ public class playsakht extends Activity {
             else if(textviewplusmines.getText().toString()=="-"){
                 if(result!=myrandomnumbers[0]-myrandomnumbers[1]){
                     count++;
+                    // moghayese behtarin result ba natijeye hale hazer
+                    int saved_best_result=pref.getInt("best_result_sakht",0);
+                    if(count>=saved_best_result){
+                        editor.putInt("best_result_sakht",count);
+                        editor.commit();
+                    }
                     //continue
                     trueorfalse();
                     myprogressbar();
@@ -230,13 +261,19 @@ public class playsakht extends Activity {
 
     public void payan(){
         // namayesh emtiaz va az sar giri
+        int bestresult=pref.getInt("best_result_sakht", 0);
+        String bestresult_string=String.valueOf(bestresult);
+
         String emtiaz=String.valueOf(count);
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(500);
-        // mire b activitie result va natije ra ha mibarad
+        // mire b activitie result va natijeha ra ha mibarad
 
         Intent result_intent = new Intent(getApplicationContext(),Result.class);
-        result_intent.putExtra("emtiaz",emtiaz);
+        Bundle extras = new Bundle();
+        extras.putString("emtiaz", emtiaz);
+        extras.putString("best_emtiaz", bestresult_string);
+        result_intent.putExtras(extras);
         startActivity(result_intent);
         onDestroy();
     }
