@@ -125,5 +125,20 @@ public class MainActivity extends Activity {
         alert.show();
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+////        super.onBackPressed();
+//        Intent myintent=new Intent(getApplicationContext(),MainActivity.class);
+//        myintent.putExtra("m","m");
+//        myintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivityForResult(myintent,Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
 }
 

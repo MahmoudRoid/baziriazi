@@ -175,6 +175,7 @@ public class playasan extends Activity {
             Bundle extras = new Bundle();
             extras.putString("emtiaz",emtiaz);
             extras.putString("best_emtiaz", bestresult_string);
+            extras.putString("level","asan");
             result_intent.putExtras(extras);
             startActivity(result_intent);
             onDestroy();
@@ -288,6 +289,12 @@ public class playasan extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        onDestroy();
+    }
 }
 
 // vaghti user ham eshtebah miznad va ham inke timer tamoom mishe , nabayad jofteshoon  payan() ro seda bezanan

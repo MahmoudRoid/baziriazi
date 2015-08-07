@@ -271,6 +271,7 @@ public class Playmotevaset extends Activity {
 		Bundle extras = new Bundle();
 		extras.putString("emtiaz", emtiaz);
 		extras.putString("best_emtiaz", bestresult_string);
+		extras.putString("level","motevaset");
 		result_intent.putExtras(extras);
 		startActivity(result_intent);
 		onDestroy();
@@ -331,6 +332,12 @@ public class Playmotevaset extends Activity {
 
 	}
 
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+
+		onDestroy();
+	}
 
 }
 

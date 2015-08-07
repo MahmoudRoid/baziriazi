@@ -273,6 +273,7 @@ public class playsakht extends Activity {
         Bundle extras = new Bundle();
         extras.putString("emtiaz", emtiaz);
         extras.putString("best_emtiaz", bestresult_string);
+        extras.putString("level","sakht");
         result_intent.putExtras(extras);
         startActivity(result_intent);
         onDestroy();
@@ -280,13 +281,13 @@ public class playsakht extends Activity {
 
     @Override
     protected void onPause() {
-        // TODO Auto-generated method stub
+
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        // TODO Auto-generated method stub
+
         super.onDestroy();
     }
 
@@ -309,18 +310,17 @@ public class playsakht extends Activity {
 
     public void myprogressbar(){
         myProgress=0;
-        mCountDownTimer=new CountDownTimer(2000,90) {
+        mCountDownTimer=new CountDownTimer(1000,40) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                // TODO Auto-generated method stub
                 myProgress++;
                 customProgress.setProgress(myProgress);
             }
 
             @Override
             public void onFinish() {
-                // TODO Auto-generated method stub
+
                 //Toast.makeText(getApplicationContext(), "finished", 1000).show();
                 if(etmam==1) {
                     payan();
@@ -333,6 +333,12 @@ public class playsakht extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        onDestroy();
+    }
 
 }
 

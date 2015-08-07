@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 
 public class Result extends Activity {
+    public String level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +24,31 @@ public class Result extends Activity {
 
             String Best_Result = extras.getString("best_emtiaz");
             tv2.setText(Best_Result);
+
+            level=extras.getString("level");
         }
 
 
     }
 
     public void replay(View view) {
+        Intent replay_intent;
+        switch (level){
+            case "asan" :
+                replay_intent  = new Intent(Result.this, playasan.class);
+                startActivity(replay_intent);
+                break;
+            case "motevaset":
+                replay_intent = new Intent(Result.this, Playmotevaset.class);
+                startActivity(replay_intent);
+                break;
+            case  "sakht":
+                replay_intent = new Intent(Result.this, playsakht.class);
+                startActivity(replay_intent);
+                break;
 
-        Intent replay_intent = new Intent(Result.this, playasan.class);
-        startActivity(replay_intent);
+        }
+
     }
 
     public void goto_menu(View v) {
@@ -47,5 +64,7 @@ public class Result extends Activity {
         super.onBackPressed();
         Intent myintent = new Intent(Result.this, MainActivity.class);
         startActivity(myintent);
+        finish();
     }
+
 }
