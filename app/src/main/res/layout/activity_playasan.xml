@@ -118,7 +118,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_weight=".5"
-            android:text="FALSE"
+            android:text="اشتباهه"
             android:textSize="35sp"
             android:onClick="btnfalse"/>
 
@@ -129,7 +129,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_weight=".5"
-            android:text="TRUE"
+            android:text="درسته"
             android:textSize="32sp"
             android:onClick="btntrue" />
     </LinearLayout>
