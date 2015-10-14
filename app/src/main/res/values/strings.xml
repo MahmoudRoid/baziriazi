@@ -11,5 +11,5 @@
     <string name="title_activity_playsakht">playsakht</string>
     <string name="emtiaz">امتیاز</string>
     <string name="best_result">بیشترین امتیاز : </string>
-
+    <string name="doubleclicktoexit">دو بار بزن اگه میخای بری :-(</string>
 </resources>

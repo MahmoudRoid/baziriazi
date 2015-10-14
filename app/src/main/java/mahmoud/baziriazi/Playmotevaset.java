@@ -337,6 +337,8 @@ public class Playmotevaset extends Activity {
 		super.onBackPressed();
 
 		onDestroy();
+		Intent myintent=new Intent(Playmotevaset.this,MainActivity.class);
+		startActivity(myintent);
 	}
 
 }

@@ -294,6 +294,8 @@ public class playasan extends Activity {
         super.onBackPressed();
 
         onDestroy();
+        Intent myintent=new Intent(playasan.this,MainActivity.class);
+        startActivity(myintent);
     }
 }
 

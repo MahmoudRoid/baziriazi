@@ -338,6 +338,8 @@ public class playsakht extends Activity {
         super.onBackPressed();
 
         onDestroy();
+        Intent myintent=new Intent(playsakht.this,MainActivity.class);
+        startActivity(myintent);
     }
 
 }
