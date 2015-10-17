@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -28,7 +29,7 @@ public class Playmotevaset extends Activity {
 	TextView tvadad2;	// adade 2vom
 	TextView tvadad3;	// adade 3vom
 	TextView textviewplusmines;	// +
-	TextView tvresult;	// result
+	TextView equal;	// =
 	int adad;
 	boolean bool;
 	boolean opbool;// baraye +  ya  -
@@ -47,11 +48,20 @@ public class Playmotevaset extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_playmotevaset);
+		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/DANSTEVIS.OTF");
 		RelativeLayout rl = (RelativeLayout)findViewById(R.id.relativelayout);
 		tvadad1=(TextView) findViewById(R.id.textView1);
 		tvadad2=(TextView) findViewById(R.id.textView2);
 		tvadad3=(TextView) findViewById(R.id.textView3);
 		textviewplusmines=(TextView) findViewById(R.id.textviewplusmines);
+		equal=(TextView) findViewById(R.id.textView5);
+		// set font
+		tvadad1.setTypeface(custom_font);
+		tvadad2.setTypeface(custom_font);
+		tvadad3.setTypeface(custom_font);
+		textviewplusmines.setTypeface(custom_font);
+		equal.setTypeface(custom_font);
+
 		customProgress =(ProgressBar)findViewById(R.id.customProgress);
 
 		pref=getApplicationContext().getSharedPreferences("MyPref_motevaset", MODE_PRIVATE);

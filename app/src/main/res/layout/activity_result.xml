@@ -85,7 +85,7 @@
         android:weightSum="1.1" >
 
         <Button
-            android:id="@+id/buttontrue"
+            android:id="@+id/buttonreplay"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".5"
@@ -101,7 +101,7 @@
             />
 
         <Button
-            android:id="@+id/buttonfalse"
+            android:id="@+id/buttonmenu"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".5"

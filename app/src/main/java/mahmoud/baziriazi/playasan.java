@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -29,7 +30,8 @@ public class playasan extends Activity {
 // #536DFE for buttons
     TextView tvadad1;   // adade aval
     TextView tvadad2;	// adade 2vom
-    TextView tvadad3;	// adade 3vom
+    TextView tvadad3;// adade 3vom
+    TextView plus,equal;
 
     int adad;
     boolean bool;
@@ -51,9 +53,20 @@ public class playasan extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playasan);
 
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/DANSTEVIS.OTF");
+
         tvadad1=(TextView) findViewById(R.id.textView1);
         tvadad2=(TextView) findViewById(R.id.textView2);
         tvadad3=(TextView) findViewById(R.id.textView3);
+        plus=(TextView)findViewById(R.id.textviewplus);
+        equal=(TextView)findViewById(R.id.textView5);
+        // set font
+        tvadad1.setTypeface(custom_font);
+        tvadad2.setTypeface(custom_font);
+        tvadad3.setTypeface(custom_font);
+        plus.setTypeface(custom_font);
+        equal.setTypeface(custom_font);
+
         customProgress =(ProgressBar)findViewById(R.id.customProgress);
         RelativeLayout rl=(RelativeLayout)findViewById(R.id.relativelayout);
         linearlayoutforbuttons = (LinearLayout)findViewById(R.id.linearLayoutbuttons);
