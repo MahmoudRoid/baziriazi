@@ -13,6 +13,10 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.nispok.snackbar.Snackbar;
+import com.nispok.snackbar.SnackbarManager;
+import com.nispok.snackbar.listeners.ActionClickListener;
+
 
 public class MainActivity extends Activity {
     boolean doubleBackToExitPressedOnce=false;
@@ -127,9 +131,21 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
-        finish();
-        System.exit(0);
+
+        SnackbarManager.show(
+                Snackbar.with(getApplicationContext()) // context
+                        .text("میخوای بری ؟") // text to display
+                        .actionLabel("آره ، خسته شدم")
+                        .duration(Snackbar.SnackbarDuration.LENGTH_SHORT)// action button label
+                        .actionListener(new ActionClickListener() {
+                            @Override
+                            public void onActionClicked(Snackbar snackbar) {
+                                moveTaskToBack(true);
+                                finish();
+                                System.exit(0);
+                            }
+                        }) // action button's ActionClickListener
+                , this); // activity where it is displayed
     }
 }
 
