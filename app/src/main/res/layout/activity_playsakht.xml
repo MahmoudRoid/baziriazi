@@ -109,29 +109,35 @@
         android:layout_alignParentBottom="true"
         android:paddingBottom="10dp"
         android:orientation="horizontal"
-        android:weightSum="1" >
-
-        <Button
+         >
+        <ImageButton
             android:id="@+id/buttonfalse"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_weight=".5"
-            android:text="FALSE"
+            android:layout_weight=".25"
+            android:background="@mipmap/ic_false_button"
+            android:text="اشتباهه"
             android:textSize="35sp"
-            android:onClick="btnfalse"/>
-
+            android:onClick="btnfalse" />
         <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            />
+
+        <ImageButton
             android:id="@+id/buttontrue"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_weight=".5"
-            android:text="TRUE"
+            android:layout_weight=".25"
+            android:background="@mipmap/ic_true_button"
+            android:text="درسته"
             android:textSize="32sp"
-            android:onClick="btntrue" />
+            android:onClick="btntrue"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -17,15 +17,18 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class Playmotevaset extends Activity {
-	String[] backcolors=new String[]{"#00e0ff","#f07c05","#d6cf23"};
+	String[] backcolors=new String[]{"#FFCDD2","#E040FB","#512DA8"
+			,"#673AB7","#1976D2","#2196F3","#0288D1","#03A9F4"
+			,"#0097A7","#00BCD4","#B2EBF2","#00796B","#009688"
+			,"#AFB42B","#CDDC39","#FFEB3B"
+			,"#FFA000","#FFC107","#F57C00","#FF9800","#FF5722"
+			,"#607D8B"};
 
 	TextView tvadad1;  // adade aval
 	TextView tvadad2;	// adade 2vom
 	TextView tvadad3;	// adade 3vom
 	TextView textviewplusmines;	// +
 	TextView tvresult;	// result
-	public Button btntrue;
-	public Button btnfalse;
 	int adad;
 	boolean bool;
 	boolean opbool;// baraye +  ya  -
@@ -49,7 +52,6 @@ public class Playmotevaset extends Activity {
 		tvadad2=(TextView) findViewById(R.id.textView2);
 		tvadad3=(TextView) findViewById(R.id.textView3);
 		textviewplusmines=(TextView) findViewById(R.id.textviewplusmines);
-		btntrue = (Button) findViewById(R.id.buttontrue);
 		customProgress =(ProgressBar)findViewById(R.id.customProgress);
 
 		pref=getApplicationContext().getSharedPreferences("MyPref_motevaset", MODE_PRIVATE);
@@ -58,7 +60,7 @@ public class Playmotevaset extends Activity {
 
 		// baraye range backgroud
 		int min = 0;
-		int max = 2;
+		int max = 21;
 		Random backcolorrandom = new Random();
 		int i1 = backcolorrandom.nextInt(max - min + 1) + min;
 		rl.setBackgroundColor(Color.parseColor(backcolors[i1]));

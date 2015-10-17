@@ -8,10 +8,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
+        >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,19 +22,23 @@
         </activity>
         <activity
             android:name=".playasan"
-            android:label="@string/title_activity_playasan" >
+            android:label="@string/title_activity_playasan"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Playmotevaset"
-            android:label="@string/title_activity_playmotevaset" >
+            android:label="@string/title_activity_playmotevaset"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Result"
-            android:label="@string/title_activity_result" >
+            android:label="@string/title_activity_result"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".playsakht"
-            android:label="@string/title_activity_playsakht" >
+            android:label="@string/title_activity_playsakht"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

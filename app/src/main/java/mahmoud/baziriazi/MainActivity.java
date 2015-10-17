@@ -17,22 +17,18 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
     boolean doubleBackToExitPressedOnce=false;
     ImageView imgplay;
-    ImageView imgexit;
     final CharSequence[] levels = {"ساده","متوسط","سخت"};
     int levelid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imgexit=(ImageView)findViewById(R.id.imageexit);
+
         imgplay=(ImageView)findViewById(R.id.imageplay);
 
 
     }
 
-    public void exitapp(View view){
-        finish();
-    }
 
     public void playactivityasan(){
 
@@ -115,7 +111,8 @@ public class MainActivity extends Activity {
                     case 2:
                         playactivitymotevaset();
                         break;
-                    case 3:;
+                    case 3:
+                        ;
                         playactivitysakht();
                         break;
                 }
@@ -130,21 +127,11 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, getResources().getString(R.string.doubleclicktoexit), Toast.LENGTH_SHORT).show();
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
+        moveTaskToBack(true);
+        finish();
+        System.exit(0);
     }
-
 }
+
+
 

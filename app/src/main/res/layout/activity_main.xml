@@ -5,16 +5,12 @@ android:layout_height="match_parent"
 android:background="#00abff" >
 
 
-
-<ImageView
-    android:id="@+id/imageexit"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentLeft="true"
-    android:onClick="exitapp"
-    android:src="@drawable/exitblue"
-    />
+    <ImageView
+        android:id="@+id/imagebackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/main_pic"
+        android:scaleType="fitXY"/>
 
 <ImageView
     android:id="@+id/imageplay"
@@ -23,17 +19,9 @@ android:background="#00abff" >
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"
     android:onClick="setlevel"
-    android:src="@drawable/play"
+    android:src="@mipmap/ic_play"
     />
 
-<ImageView
-    android:id="@+id/imagebackground"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_above="@+id/imageexit"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:src="@drawable/back1" />
 
 </RelativeLayout>
 

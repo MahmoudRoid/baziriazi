@@ -20,13 +20,17 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class playasan extends Activity {
-    String[] backcolors=new String[]{"#00e0ff","#f07c05","#d6cf23"};
-
-    TextView tvadad1;  // adade aval
+    String[] backcolors=new String[]{"#FFCDD2","#E040FB","#512DA8"
+                                     ,"#673AB7","#1976D2","#2196F3","#0288D1","#03A9F4"
+                                      ,"#0097A7","#00BCD4","#B2EBF2","#00796B","#009688"
+                                      ,"#AFB42B","#CDDC39","#FFEB3B"
+                                     ,"#FFA000","#FFC107","#F57C00","#FF9800","#FF5722"
+                                     ,"#607D8B"};
+// #536DFE for buttons
+    TextView tvadad1;   // adade aval
     TextView tvadad2;	// adade 2vom
     TextView tvadad3;	// adade 3vom
-    public Button btntrue;
-    //    public Button btnfalse;
+
     int adad;
     boolean bool;
     public int[] myrandomnumbers=new int[2];
@@ -50,7 +54,6 @@ public class playasan extends Activity {
         tvadad1=(TextView) findViewById(R.id.textView1);
         tvadad2=(TextView) findViewById(R.id.textView2);
         tvadad3=(TextView) findViewById(R.id.textView3);
-        btntrue = (Button) findViewById(R.id.buttontrue);
         customProgress =(ProgressBar)findViewById(R.id.customProgress);
         RelativeLayout rl=(RelativeLayout)findViewById(R.id.relativelayout);
         linearlayoutforbuttons = (LinearLayout)findViewById(R.id.linearLayoutbuttons);
@@ -70,7 +73,7 @@ public class playasan extends Activity {
 
         // baraye range backgroud
         int min = 0;
-        int max = 2;
+        int max = 21;
         Random backcolorrandom = new Random();
         int i1 = backcolorrandom.nextInt(max - min + 1) + min;
         rl.setBackgroundColor(Color.parseColor(backcolors[i1]));
