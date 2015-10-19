@@ -194,6 +194,8 @@ public class playasan extends Activity {
             extras.putString("level","asan");
             result_intent.putExtras(extras);
             startActivity(result_intent);
+            overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
+
             onDestroy();
         }
         catch (Exception e) {
@@ -261,8 +263,6 @@ public class playasan extends Activity {
 
 
 
-
-
     public int random(){
 
         Random random = new Random();
@@ -302,18 +302,18 @@ public class playasan extends Activity {
         };
         mCountDownTimer.start();
 
-
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
-        onDestroy();
-        Intent myintent=new Intent(playasan.this,MainActivity.class);
-        startActivity(myintent);
+            if(count==0){
+                super.onBackPressed();
+                onDestroy();
+                Intent myintent=new Intent(playasan.this,MainActivity.class);
+                startActivity(myintent);
+                overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
+            }
     }
 }
 
-// vaghti user ham eshtebah miznad va ham inke timer tamoom mishe , nabayad jofteshoon  payan() ro seda bezanan
 

@@ -287,6 +287,7 @@ public class playsakht extends Activity {
         extras.putString("level","sakht");
         result_intent.putExtras(extras);
         startActivity(result_intent);
+        overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
         onDestroy();
     }
 
@@ -346,11 +347,14 @@ public class playsakht extends Activity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
 
-        onDestroy();
-        Intent myintent=new Intent(playsakht.this,MainActivity.class);
-        startActivity(myintent);
+        if (count==0) {
+            super.onBackPressed();
+            onDestroy();
+            Intent myintent=new Intent(playsakht.this,MainActivity.class);
+            startActivity(myintent);
+            overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
+        }
     }
 
 }

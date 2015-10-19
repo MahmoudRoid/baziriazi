@@ -5,133 +5,131 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
+import com.github.alexkolpa.fabtoolbar.FabToolbar;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
 import com.nispok.snackbar.listeners.ActionClickListener;
 
 
 public class MainActivity extends Activity {
-    boolean doubleBackToExitPressedOnce=false;
-    ImageView imgplay;
-    final CharSequence[] levels = {"ساده","متوسط","سخت"};
-    int levelid;
+    RelativeLayout mainRelativeLayout;
+    Button asan,motevaset,sakht;
+    Animation textclicked_animation,textmove_animation,textmove2_animation,textslide_animation,textslide2_animation;
+    public  Handler handler;
+    FabToolbar fabToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/DANSTEVIS.OTF");
+        fabToolbar = ((FabToolbar) findViewById(R.id.fab_toolbar));
+        mainRelativeLayout =(RelativeLayout)findViewById(R.id.main_relativelayout);
+        // Animations
+        textclicked_animation = AnimationUtils.loadAnimation(this, R.anim.clickedview);
+        textmove_animation = AnimationUtils.loadAnimation(this, R.anim.moveview);
+        textmove2_animation = AnimationUtils.loadAnimation(this, R.anim.moveview_barax);
+        textslide_animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_top);
+        textslide2_animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom);
 
-        imgplay=(ImageView)findViewById(R.id.imageplay);
-
-
+        asan=(Button)findViewById(R.id.asan);
+        motevaset=(Button)findViewById(R.id.motevaset);
+        sakht=(Button)findViewById(R.id.sakht);
+        // set fonts
+        asan.setTypeface(custom_font);
+        motevaset.setTypeface(custom_font);
+        sakht.setTypeface(custom_font);
+        // anim buttons
+        asan.startAnimation(textslide2_animation);
+        motevaset.startAnimation(textslide2_animation);
+        sakht.startAnimation(textslide_animation);
+        // textviews clicked listener
+        asan.setOnClickListener(clicked);
+        motevaset.setOnClickListener(clicked);
+        sakht.setOnClickListener(clicked);
     }
+    View.OnClickListener clicked =new View.OnClickListener(){
 
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.asan :
+                    asan.setTextColor(Color.parseColor("#4CAF50"));
+                    asan.startAnimation(textclicked_animation);
+                    sleep("asan");
+                    asan.setTextSize(50);
+                    break;
+                case R.id.motevaset :
+                    motevaset.startAnimation(textclicked_animation);
+                    motevaset.setTextColor(Color.parseColor("#4CAF50"));
+                    sleep("motevaset");
+                    motevaset.setTextSize(50);
+                    break;
+                case R.id.sakht :
+                    sakht.startAnimation(textclicked_animation);
+                    sakht.setTextColor(Color.parseColor("#4CAF50"));
+                    sleep("sakht");
+                    sakht.setTextSize(50);
+                    break;
+                case R.id.main_relativelayout :
+                    fabToolbar.hide();
+            }
+        }
+    };
 
-    public void playactivityasan(){
-
-        // goto second activity
-
-        Intent myintent = new Intent(MainActivity.this,playasan.class);
-        startActivity(myintent);
-
-    }
-    public void playactivitymotevaset(){
-
-        // goto second activity
-
-        Intent intent = new Intent(MainActivity.this,Playmotevaset.class);
-        startActivity(intent);
-
-    }
-    public void   playactivitysakht(){
-
-        // goto second activity
-
-        Intent intent = new Intent(MainActivity.this,playsakht.class);
-        startActivity(intent);
-    }
-    @SuppressLint("NewApi") public void setlevel(View view){
-        // entekhabe noe level
-
-        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this,AlertDialog.THEME_TRADITIONAL);
-        alert.setInverseBackgroundForced(true);
-
-
-        alert.setTitle("انتخاب سطح بازی");
-        alert.setSingleChoiceItems(levels,-1, new
-
-                DialogInterface.OnClickListener()
-
-                {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        if(levels[which]=="ساده")
-
-                        {
-
-                            levelid=1;
-                        }
-
-                        else if (levels[which]=="متوسط")
-
-                        {
-
-                            levelid=2;
-
-                        }
-                        else if (levels[which]=="سخت")
-
-                        {
-
-                            levelid=3;
-
-                        }
-
-                    }
-
-
-                });
-
-        alert.setPositiveButton("همین خوبه", new DialogInterface.OnClickListener() {
-
-
+    private void sleep(final String level) {
+        handler=new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
-                switch (levelid) {
-                    case 1:
+            public void run() {
+                switch (level) {
+                    case "asan":
                         playactivityasan();
                         break;
-
-                    case 2:
+                    case "motevaset":
                         playactivitymotevaset();
                         break;
-                    case 3:
-                        ;
+                    case "sakht":
                         playactivitysakht();
                         break;
                 }
-
-
             }
-        });
-
-        alert.show();
-
+        }, 800);
     }
 
+    public void  playactivityasan(){
+        // goto second activity
+        Intent myintent = new Intent(MainActivity.this,playasan.class);
+        startActivity(myintent);
+        overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
+    }
+    public void playactivitymotevaset(){
+        // goto second activity
+        Intent intent = new Intent(MainActivity.this,Playmotevaset.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
+
+    }
+    public void  playactivitysakht(){
+        // goto second activity
+        Intent intent = new Intent(MainActivity.this,playsakht.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
+
+    }
     @Override
     public void onBackPressed() {
-
+        fabToolbar.hide();
         SnackbarManager.show(
                 Snackbar.with(getApplicationContext()) // context
                         .text("میخوای بری ؟") // text to display
@@ -146,8 +144,8 @@ public class MainActivity extends Activity {
                             }
                         }) // action button's ActionClickListener
                 , this); // activity where it is displayed
-    }
-}
+    }}
+
 
 
 

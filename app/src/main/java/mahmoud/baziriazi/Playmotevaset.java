@@ -286,6 +286,7 @@ public class Playmotevaset extends Activity {
 		extras.putString("level","motevaset");
 		result_intent.putExtras(extras);
 		startActivity(result_intent);
+        overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
 		onDestroy();
 	}
 
@@ -346,11 +347,14 @@ public class Playmotevaset extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
+        if(count==0){
+            super.onBackPressed();
+            onDestroy();
+            Intent myintent=new Intent(Playmotevaset.this,MainActivity.class);
+            startActivity(myintent);
+            overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
+        }
 
-		onDestroy();
-		Intent myintent=new Intent(Playmotevaset.this,MainActivity.class);
-		startActivity(myintent);
 	}
 
 }

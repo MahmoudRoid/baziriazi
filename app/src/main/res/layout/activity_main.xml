@@ -1,27 +1,94 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#00abff" >
+    xmlns:tb="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_relativelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#777ea0">
 
 
-    <ImageView
-        android:id="@+id/imagebackground"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/main_pic"
-        android:scaleType="fitXY"/>
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:layout_above="@+id/center_linearlayout"
+        android:paddingBottom="10dp"
+        >
 
-<ImageView
-    android:id="@+id/imageplay"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    android:onClick="setlevel"
-    android:src="@mipmap/ic_play"
-    />
 
+        <Button
+            android:id="@+id/motevaset"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="متوسط"
+            android:textSize="40sp"
+            android:textColor="#001212"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_background"
+
+            />
+        <Button
+            android:id="@+id/asan"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="آسون"
+            android:textSize="40sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:textColor="#001212"
+            android:background="@drawable/button_background"
+
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/center_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal">
+        <!--an empty space ( fasele ma beine button haye bala paeen-->
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/sakht"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:text="سخت"
+        android:textSize="40sp"
+        android:textColor="#001212"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/center_linearlayout"
+        android:paddingTop="10dp"
+        android:background="@drawable/button_background"
+        />
+
+    <com.github.alexkolpa.fabtoolbar.FabToolbar
+        android:id="@+id/fab_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        tb:tb_anim_duration="500"
+        tb:tb_button_gravity="end"
+        tb:tb_container_gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/attach"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_attachment_white_48dp"
+            android:layout_marginLeft="@dimen/icon_margin"
+            android:layout_marginRight="@dimen/icon_margin"
+            />
+
+        <!-- More buttons can be added here -->
+
+    </com.github.alexkolpa.fabtoolbar.FabToolbar>
 
 </RelativeLayout>
 

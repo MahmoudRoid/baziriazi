@@ -53,14 +53,17 @@ public class Result extends Activity {
             case "asan" :
                 replay_intent  = new Intent(Result.this, playasan.class);
                 startActivity(replay_intent);
+                overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
                 break;
             case "motevaset":
                 replay_intent = new Intent(Result.this, Playmotevaset.class);
                 startActivity(replay_intent);
+                overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
                 break;
             case  "sakht":
                 replay_intent = new Intent(Result.this, playsakht.class);
                 startActivity(replay_intent);
+                overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
                 break;
 
         }
@@ -71,7 +74,7 @@ public class Result extends Activity {
 
         Intent exit_intent = new Intent(Result.this, MainActivity.class);
         startActivity(exit_intent);
-
+        overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
     }
 
     @Override
@@ -80,6 +83,7 @@ public class Result extends Activity {
         super.onBackPressed();
         Intent intent = new Intent(Result.this, MainActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
         finish();
     }
 
