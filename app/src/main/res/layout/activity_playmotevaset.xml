@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="Mahmoud.baziriazi.playasan" >
+    tools:context="Mahmoud.baziriazi.playasan"
+    android:keepScreenOn="true">
 
     <ProgressBar
         android:id="@+id/customProgress"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#777ea0"
+    android:keepScreenOn="true">
+
+    <TextView
+        android:id="@+id/matn_help"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/matn_help"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:paddingTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:lineSpacingExtra="15dp"/>
+
+    <TextView
+        android:id="@+id/return2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="برگشت"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="30dp"
+        />
+</LinearLayout>

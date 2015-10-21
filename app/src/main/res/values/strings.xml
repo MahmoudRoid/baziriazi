@@ -12,4 +12,8 @@
     <string name="emtiaz">امتیاز</string>
     <string name="best_result">بهترین امتیاز :</string>
     <string name="doubleclicktoexit">دو بار بزن اگه میخای بری :-(</string>
+    <string name="title_activity_contactus_help">contactus_help</string>
+    <string name="contact_us">اگه انتقادی یا پیشنهادی داشتی ، از طریق ایمیل زیر بهم بگو</string>
+    <string name="matn_help">تو این بازی ، یک عبارت ریاضی میاد که یا درسته یا غلطه . اگه درست بود ، دکمه سبز رو بزن ، اگرم اشتباه بود دکمه قرمز . فقط حواست به تایمی که واسه هر عبارت داری باشه :-)  .</string>
+
 </resources>

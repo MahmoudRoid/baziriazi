@@ -3,38 +3,48 @@
     android:id="@+id/main_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#777ea0">
+    android:background="#777ea0"
+    android:onClick="close_fabtoolbar"
+    android:keepScreenOn="true"
+    >
 
-
+    <TextView
+        android:id="@+id/bazi_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="بازی   ریـــــاضی"
+        android:textSize="40sp"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        />
 
     <RelativeLayout
+        android:id="@+id/twobuttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:orientation="horizontal"
-        android:layout_above="@+id/center_linearlayout"
-        android:paddingBottom="10dp"
-        >
-
+        android:layout_above="@+id/center_linearlayout">
 
         <Button
             android:id="@+id/motevaset"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:text="متوسط"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:textColor="#001212"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:background="@drawable/button_background"
-
             />
         <Button
             android:id="@+id/asan"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="آسون"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:textColor="#001212"
@@ -46,7 +56,7 @@
     <LinearLayout
         android:id="@+id/center_linearlayout"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="10dp"
         android:layout_centerVertical="true"
         android:orientation="horizontal">
         <!--an empty space ( fasele ma beine button haye bala paeen-->
@@ -65,6 +75,9 @@
         android:background="@drawable/button_background"
         />
 
+
+
+
     <com.github.alexkolpa.fabtoolbar.FabToolbar
         android:id="@+id/fab_toolbar"
         android:layout_width="match_parent"
@@ -72,18 +85,43 @@
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        tb:tb_color="#03A9F4"
         tb:tb_anim_duration="500"
         tb:tb_button_gravity="end"
         tb:tb_container_gravity="center"
         >
 
         <ImageView
-            android:id="@+id/attach"
+            android:id="@+id/contact_us"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_attachment_white_48dp"
+            android:src="@drawable/ic_contact_us"
             android:layout_marginLeft="@dimen/icon_margin"
             android:layout_marginRight="@dimen/icon_margin"
+            android:onClick="contact_us"
+            />
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/help"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_help"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:onClick="help"
+            />
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/sound"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="@dimen/icon_margin"
+            android:layout_marginRight="@dimen/icon_margin"
+            android:onClick="sound_on_off"
             />
 
         <!-- More buttons can be added here -->
