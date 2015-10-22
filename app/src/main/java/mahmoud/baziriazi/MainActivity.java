@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -27,23 +29,47 @@ import com.nispok.snackbar.listeners.ActionClickListener;
 
 public class MainActivity extends Activity {
     Button asan,motevaset,sakht;
-    TextView bazi_txt,riazi_txt;
+    TextView bazi_txt;
     ImageView sound_img_view;
     Animation textclicked_animation,textmove_animation,textmove2_animation,textslide_animation,textslide2_animation;
-    public RelativeLayout main_relativeLayout,contact_us_relativelayout;
+    public RelativeLayout main_relativeLayout;
     public  Handler handler;
     FabToolbar fabToolbar;
+    public static MediaPlayer mp;
     public static boolean sound=true;
+    public SharedPreferences prefs;
+    public SharedPreferences.Editor editor;
+    static  boolean tmp_bool;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        prefs=this.getSharedPreferences("mypref", MODE_PRIVATE);
+        editor=prefs.edit();
+
+        mp=MediaPlayer.create(this, R.raw.backgroundvoice);
+        mp.setLooping(true);
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+        sound_img_view=(ImageView)findViewById(R.id.sound);
+        boolean status=sound_status();
+        if(status==true){
+            sound_img_view.setImageResource(R.drawable.ic_voice_on);
+            mp.setLooping(true);
+            mp.start();
+        }
+        else if(status==false){
+            sound_img_view.setImageResource(R.drawable.ic_voice_off);
+        }
         main_relativeLayout=(RelativeLayout)findViewById(R.id.main_relativelayout);
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/DANSTEVIS.OTF");
         fabToolbar = ((FabToolbar) findViewById(R.id.fab_toolbar));
-        sound_img_view=(ImageView)findViewById(R.id.sound);
-        if(sound)   sound_img_view.setImageResource(R.drawable.ic_voice_on);
-        if(!sound)  sound_img_view.setImageResource(R.drawable.ic_voice_off);
+
 
         // Animations
         textclicked_animation = AnimationUtils.loadAnimation(this, R.anim.clickedview);
@@ -124,12 +150,20 @@ public class MainActivity extends Activity {
 
     public void  playactivityasan(){
         // goto second activity
+        if(sound_status()&&mp.isPlaying()){
+            mp.stop();
+            mp.reset();
+        }
         Intent myintent = new Intent(MainActivity.this,playasan.class);
         startActivity(myintent);
         overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
     }
     public void playactivitymotevaset(){
         // goto second activity
+        if(sound_status()&&mp.isPlaying()){
+            mp.stop();
+            mp.reset();
+        }
         Intent intent = new Intent(MainActivity.this,Playmotevaset.class);
         startActivity(intent);
         overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
@@ -137,6 +171,10 @@ public class MainActivity extends Activity {
     }
     public void  playactivitysakht(){
         // goto second activity
+        if(sound_status()&&mp.isPlaying()){
+            mp.stop();
+            mp.reset();
+        }
         Intent intent = new Intent(MainActivity.this,playsakht.class);
         startActivity(intent);
         overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
@@ -145,24 +183,7 @@ public class MainActivity extends Activity {
     public void close_fabtoolbar(View view){
         fabToolbar.hide();
     }
-    @Override
-    public void onBackPressed() {
-            fabToolbar.hide();
-            SnackbarManager.show(
-                    Snackbar.with(getApplicationContext()) // context
-                            .text("میخوای بری ؟") // text to display
-                            .actionLabel("آره ، خسته شدم")
-                            .duration(Snackbar.SnackbarDuration.LENGTH_SHORT)// action button label
-                            .actionListener(new ActionClickListener() {
-                                @Override
-                                public void onActionClicked(Snackbar snackbar) {
-                                    moveTaskToBack(true);
-                                    finish();
-                                    System.exit(0);
-                                }
-                            }) // action button's ActionClickListener
-                    , this); // activity where it is displayed
-        }
+
 
     public void contact_us(View view){
         // TODO goto contact_us activity
@@ -179,16 +200,62 @@ public class MainActivity extends Activity {
         overridePendingTransition(R.anim.abc_slide_in_top, R.anim.abc_fade_out);
     }
     public void sound_on_off(View view){
-        if(sound){
-            // TODO turn sound off
-            sound=false;
+
+        if(sound_status()==true){
             sound_img_view.setImageResource(R.drawable.ic_voice_off);
+            sound=false;
+            editor.putBoolean("sound_status", false);
+            editor.commit();
+            if(mp.isPlaying()==true){
+                mp.stop();
+                mp.reset();
+            }
         }
-        else if (!sound){
+        else if (sound_status()==false){
             // TODO turn sound  on
-            sound=true;
             sound_img_view.setImageResource(R.drawable.ic_voice_on);
+            sound=true;
+            editor.putBoolean("sound_status", true);
+            editor.commit();
+            if(mp.isPlaying()==false){
+                mp=MediaPlayer.create(this, R.raw.backgroundvoice);
+                mp.setLooping(true);
+                mp.start();
+            }
         }
+    }
+    @Override
+    public void onBackPressed() {
+        fabToolbar.hide();
+        SnackbarManager.show(
+                Snackbar.with(getApplicationContext()) // context
+                        .text("میخوای بری ؟") // text to display
+                        .color(Color.parseColor("#FBC02D"))
+                        .textColor(Color.parseColor("#ffffff"))
+                        .actionLabel("آره ، خسته شدم")
+                        .duration(Snackbar.SnackbarDuration.LENGTH_SHORT)// action button label
+                        .actionListener(new ActionClickListener() {
+                            @Override
+                            public void onActionClicked(Snackbar snackbar) {
+                                if (mp.isPlaying()) {
+                                    mp.stop();
+                                    mp.reset();
+                                    mp.release();
+                                    mp = null;
+                                }
+                                moveTaskToBack(true);
+                                ;
+                                finish();
+                                System.exit(0);
+                            }
+                        }) // action button's ActionClickListener
+                , this); // activity where it is displayed
+    }
+    public boolean sound_status(){
+
+        tmp_bool=prefs.getBoolean("sound_status",true);
+        return prefs.getBoolean("sound_status",true);
+
     }
 
 }

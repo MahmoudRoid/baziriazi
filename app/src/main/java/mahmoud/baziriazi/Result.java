@@ -80,7 +80,7 @@ public class Result extends Activity {
     @Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
-        super.onBackPressed();
+//        super.onBackPressed();
         Intent intent = new Intent(Result.this, MainActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.left, R.anim.abc_fade_out);

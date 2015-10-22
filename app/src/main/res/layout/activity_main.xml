@@ -12,7 +12,7 @@
         android:id="@+id/bazi_textview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="بازی   ریـــــاضی"
+        android:text="بازی و ریـــــاضی"
         android:textSize="40sp"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"

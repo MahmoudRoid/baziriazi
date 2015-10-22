@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -45,11 +46,28 @@ public class playsakht extends Activity {
     public int hasel;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
+    public MediaPlayer mp_sakht;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playsakht);
+        mp_sakht= MediaPlayer.create(this, R.raw.backgroundvoice);
+        if(MainActivity.tmp_bool){
+
+                // yani vaghti yek bar dg ro mizanim dar safeye result
+
+                mp_sakht.setLooping(true);
+                mp_sakht.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp_sakht.start();
+                    }
+                });
+                mp_sakht.start();
+
+        }
+
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/DANSTEVIS.OTF");
         RelativeLayout rl = (RelativeLayout)findViewById(R.id.relativelayout);
         tvadad1=(TextView) findViewById(R.id.textView1);
@@ -271,6 +289,16 @@ public class playsakht extends Activity {
     }
 
     public void payan(){
+        if(MainActivity.sound){
+            if(mp_sakht.isPlaying()){
+                mp_sakht.stop();
+                mp_sakht.reset();
+                mp_sakht.release();
+                mp_sakht=null;
+            }
+
+        }
+
         // namayesh emtiaz va az sar giri
         int bestresult=pref.getInt("best_result_sakht", 0);
         String bestresult_string=String.valueOf(bestresult);
@@ -349,6 +377,15 @@ public class playsakht extends Activity {
     public void onBackPressed() {
 
         if (count==0) {
+            if(MainActivity.sound){
+                if(mp_sakht.isPlaying()){
+                    mp_sakht.stop();
+                    mp_sakht.reset();
+                    mp_sakht.release();
+                    mp_sakht=null;
+                }
+            }
+
             super.onBackPressed();
             onDestroy();
             Intent myintent=new Intent(playsakht.this,MainActivity.class);

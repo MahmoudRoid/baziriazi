@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -44,10 +45,27 @@ public class Playmotevaset extends Activity {
 	public int hasel;
 	public SharedPreferences pref;
 	public SharedPreferences.Editor editor;
+	public MediaPlayer mp_motevaset;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_playmotevaset);
+		// start playing if sound is not playing
+		mp_motevaset= MediaPlayer.create(this, R.raw.backgroundvoice);
+		if(MainActivity.tmp_bool){
+				// yani vaghti yek bar dg ro mizanim dar safeye result
+
+				mp_motevaset.setLooping(true);
+				mp_motevaset.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+					@Override
+					public void onCompletion(MediaPlayer mp) {
+						mp_motevaset.start();
+					}
+				});
+				mp_motevaset.start();
+
+		}
+
 		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/DANSTEVIS.OTF");
 		RelativeLayout rl = (RelativeLayout)findViewById(R.id.relativelayout);
 		tvadad1=(TextView) findViewById(R.id.textView1);
@@ -270,6 +288,15 @@ public class Playmotevaset extends Activity {
 	}
 
 	public void payan(){
+		if(MainActivity.sound){
+			if(mp_motevaset.isPlaying()){
+				mp_motevaset.stop();
+				mp_motevaset.reset();
+				mp_motevaset.release();
+				mp_motevaset=null;
+			}
+
+		}
 		// namayesh emtiaz va az sar giri
 		int bestresult=pref.getInt("best_result_motevaset", 0);
 		String bestresult_string=String.valueOf(bestresult);
@@ -348,6 +375,14 @@ public class Playmotevaset extends Activity {
 	@Override
 	public void onBackPressed() {
         if(count==0){
+			if(MainActivity.sound){
+				if(mp_motevaset.isPlaying()){
+					mp_motevaset.stop();
+					mp_motevaset.reset();
+					mp_motevaset.release();
+					mp_motevaset=null;
+				}
+			}
             super.onBackPressed();
             onDestroy();
             Intent myintent=new Intent(Playmotevaset.this,MainActivity.class);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -46,13 +47,25 @@ public class playasan extends Activity {
     public LinearLayout linearlayoutforbuttons;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
-
+    public  MediaPlayer mp_asan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playasan);
+        // start playing if sound is not playing
+        mp_asan= MediaPlayer.create(this, R.raw.backgroundvoice);
+        if(MainActivity.tmp_bool) {
 
+            mp_asan.setLooping(true);
+            mp_asan.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp_asan.start();
+                }
+            });
+            mp_asan.start();
+        }
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/DANSTEVIS.OTF");
 
         tvadad1=(TextView) findViewById(R.id.textView1);
@@ -179,6 +192,15 @@ public class playasan extends Activity {
 
         // namayesh emtiaz va az sar giri
         try{
+            if(MainActivity.sound){
+
+                if(mp_asan.isPlaying()){
+                    mp_asan.stop();
+                    mp_asan.reset();
+                    mp_asan.release();
+                    mp_asan=null;
+                }
+            }
             int bestresult=pref.getInt("best_result_asan",0);
             String bestresult_string=String.valueOf(bestresult);
 
@@ -195,7 +217,6 @@ public class playasan extends Activity {
             result_intent.putExtras(extras);
             startActivity(result_intent);
             overridePendingTransition(R.anim.left, R.anim.abc_fade_out);
-
             onDestroy();
         }
         catch (Exception e) {
@@ -307,6 +328,14 @@ public class playasan extends Activity {
     @Override
     public void onBackPressed() {
             if(count==0){
+                if(MainActivity.sound){
+                    if(mp_asan.isPlaying()){
+                        mp_asan.stop();
+                        mp_asan.reset();
+                        mp_asan.release();
+                        mp_asan=null;
+                    }
+                }
                 super.onBackPressed();
                 onDestroy();
                 Intent myintent=new Intent(playasan.this,MainActivity.class);
@@ -315,5 +344,3 @@ public class playasan extends Activity {
             }
     }
 }
-
-
