@@ -51,6 +51,7 @@ public class contactus_help extends Activity{
             e.printStackTrace();
         }
         try {
+
             matn_help=(TextView)findViewById(R.id.matn_help);
             return2=(TextView)findViewById(R.id.return2);
             //set fonts
@@ -71,10 +72,10 @@ public class contactus_help extends Activity{
 
     @Override
     public void onBackPressed() {
-      if(MainActivity.sound==true){
-          MainActivity.mp.stop();
-          MainActivity.mp.reset();
-      }
+        if(MainActivity.sound==true){
+            MainActivity.mp.stop();
+            MainActivity.mp.reset();
+        }
         super.onBackPressed();
         onDestroy();
         Intent myintent=new Intent(contactus_help.this,MainActivity.class);

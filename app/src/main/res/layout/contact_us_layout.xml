@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="m.mahmoudreza1@gmail.com"
         android:textColor="#ffffff"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:layout_below="@+id/matn_tamas"
         android:paddingTop="20dp"
         android:gravity="center_horizontal"
