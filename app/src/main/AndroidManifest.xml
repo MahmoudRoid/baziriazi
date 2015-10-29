@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mahmoud.baziriazi"
+    package="mahmoud.bazioriazi"
     android:installLocation="auto">
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -11,39 +11,39 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
         <activity
-            android:name=".MainActivity"
+            android:name="mahmoud.bazioriazi.MainActivity"
             android:clearTaskOnLaunch="true"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
 
         </activity>
         <activity
-            android:name=".playasan"
+            android:name="mahmoud.bazioriazi.playasan"
             android:label="@string/title_activity_playasan"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Playmotevaset"
+            android:name="mahmoud.bazioriazi.Playmotevaset"
             android:label="@string/title_activity_playmotevaset"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Result"
+            android:name="mahmoud.bazioriazi.Result"
             android:label="@string/title_activity_result"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".playsakht"
+            android:name="mahmoud.bazioriazi.playsakht"
             android:label="@string/title_activity_playsakht"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".contactus_help"
+            android:name="mahmoud.bazioriazi.contactus_help"
             android:label="@string/title_activity_contactus_help"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".splash_activity"
+            android:name="mahmoud.bazioriazi.splash_activity"
             android:label="@string/title_activity_main"
             android:clearTaskOnLaunch="true"
             android:screenOrientation="portrait">

@@ -1,4 +1,4 @@
-package mahmoud.baziriazi;
+package mahmoud.bazioriazi;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;

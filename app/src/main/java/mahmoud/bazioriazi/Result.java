@@ -1,4 +1,4 @@
-package mahmoud.baziriazi;
+package mahmoud.bazioriazi;
 
 import android.app.Activity;
 import android.content.Intent;

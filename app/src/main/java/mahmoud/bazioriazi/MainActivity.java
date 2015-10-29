@@ -1,9 +1,6 @@
-package mahmoud.baziriazi;
+package mahmoud.bazioriazi;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -19,7 +16,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.alexkolpa.fabtoolbar.FabToolbar;
 import com.nispok.snackbar.Snackbar;
